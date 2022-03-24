@@ -9,5 +9,6 @@ const router = Router();
 /*---------- Protected Routes ----------*/
 
 router.get("/", checkAuth, gamesCtrl.index);
+router.post("/", gamesCtrl.create)
 
 export { router };
