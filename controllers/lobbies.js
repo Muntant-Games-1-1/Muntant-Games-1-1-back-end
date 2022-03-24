@@ -9,4 +9,13 @@ function index(req, res) {
 		});
 }
 
-export { index };
+function create(req, res) {
+	Lobby.create(req.body)
+		.then(lobby => res.status(201).json(lobby))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
+}
+
+export { index, create };

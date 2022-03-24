@@ -9,5 +9,6 @@ const router = Router();
 /*---------- Protected Routes ----------*/
 
 router.get("/", checkAuth, lobbiesCtrl.index);
+router.post("/", lobbiesCtrl.create);
 
 export { router };
