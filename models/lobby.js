@@ -9,6 +9,7 @@ const lobbySchema = new Schema(
 		game: { type: Schema.Types.ObjectId, ref: "Game" },
 		waitingPlayers: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
 		messages: [{ type: Schema.Types.ObjectId, ref: "Message" }],
+		lobbyLimit: { type: Number, min: 2 },
 	},
 	{
 		timestamps: true,

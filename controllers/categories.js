@@ -9,4 +9,8 @@ function index(req, res) {
 		});
 }
 
-export { index };
+function create() {
+
+}
+
+export { index, create };
