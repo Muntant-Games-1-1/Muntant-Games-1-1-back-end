@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const messageSchema = new Schema(
 	{
-		owner: { type: Schema.Types.ObjectId, ref: "Profile"},
-    lobby: { type: Schema.Types.ObjectId, ref: "Lobby" },
-    content: String,
+		owner: { type: Schema.Types.ObjectId, ref: "Profile" },
+		lobby: { type: Schema.Types.ObjectId, ref: "Lobby" },
+		content: String,
 	},
 	{
 		timestamps: true,
