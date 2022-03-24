@@ -8,7 +8,7 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 
-router.get("/", checkAuth, lobbiesCtrl.index);
+router.get("/", lobbiesCtrl.index);
 router.post("/", lobbiesCtrl.create);
 router.delete("/", lobbiesCtrl.delete)
 

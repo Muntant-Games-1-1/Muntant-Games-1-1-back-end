@@ -8,6 +8,7 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 
-router.get("/", checkAuth, categoriesCtrl.index);
+router.get("/", categoriesCtrl.index);
+router.post("/", categoriesCtrl.create)
 
 export { router };
