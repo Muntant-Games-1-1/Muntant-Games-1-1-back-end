@@ -18,4 +18,10 @@ function create(req, res) {
 		});
 }
 
-export { index, create };
+function deleteLobby(req, res) {
+	Lobby.findByIdAndDelete(req.params.id)
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => res.status(405).json(err))
+}
+
+export { index, create, deleteLobby as delete };

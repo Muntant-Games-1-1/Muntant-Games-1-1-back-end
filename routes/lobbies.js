@@ -10,5 +10,6 @@ const router = Router();
 
 router.get("/", checkAuth, lobbiesCtrl.index);
 router.post("/", lobbiesCtrl.create);
+router.delete("/", lobbiesCtrl.delete)
 
 export { router };
