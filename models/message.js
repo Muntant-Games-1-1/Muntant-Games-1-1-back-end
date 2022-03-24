@@ -13,6 +13,6 @@ const messageSchema = new Schema(
 	}
 );
 
-const Message = mongoose.model("Category", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 export { Message };
