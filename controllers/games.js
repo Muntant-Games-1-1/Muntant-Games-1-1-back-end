@@ -9,4 +9,13 @@ function index(req, res) {
 		});
 }
 
-export { index };
+function create(req, res) {
+	Game.create(req.body)
+		.then(game => res.status(201).json(game))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
+}
+
+export { index, create };
