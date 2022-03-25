@@ -1,15 +1,17 @@
 import { Router } from "express";
 import * as lobbiesCtrl from "../controllers/lobbies.js";
-import { checkAuth } from "../middleware/auth.js";
+import { decodeUserFromToken, checkAuth } from "../middleware/auth.js";
 
 const router = Router();
+
 
 /*---------- Public Routes ----------*/
 
 /*---------- Protected Routes ----------*/
+router.use(decodeUserFromToken);
 
-router.get("/", lobbiesCtrl.index);
-router.post("/", lobbiesCtrl.create);
-router.delete("/", lobbiesCtrl.delete)
+router.get("/", checkAuth, lobbiesCtrl.index);
+router.post("/", checkAuth, lobbiesCtrl.create);
+router.delete("/", checkAuth, lobbiesCtrl.delete);
 
 export { router };
