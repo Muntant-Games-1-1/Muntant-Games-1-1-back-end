@@ -7,12 +7,11 @@ const router = Router();
 
 /*---------- Public Routes ----------*/
 router.get("/", lobbiesCtrl.index);
+router.get("/:id", lobbiesCtrl.show)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken);
-
 router.post("/", checkAuth, lobbiesCtrl.create);
 router.delete("/", checkAuth, lobbiesCtrl.delete);
-router.show("/:id", checkAuth, lobbiesCtrl.show)
 
 export { router };

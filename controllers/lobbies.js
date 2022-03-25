@@ -26,7 +26,9 @@ function deleteLobby(req, res) {
 }
 
 function show(req, res){
-	
+	Lobby.findById(req.params.id)
+	.then(lobby => res.status(200).json(lobby))
+	.catch(err => res.status(500).json(err))
 }
 
 export {
