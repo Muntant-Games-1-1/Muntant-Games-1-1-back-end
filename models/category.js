@@ -6,6 +6,7 @@ const categorySchema = new Schema(
 	{
 		name: String,
 		games: [{ type: Schema.Types.ObjectId, ref: "Game" }],
+		description: String,
 	},
 	{
 		timestamps: true,
