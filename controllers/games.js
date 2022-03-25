@@ -1,5 +1,5 @@
 import { Game } from "../models/game.js";
-import { Category } from "../models/category.js"
+import { Category } from "../models/category.js";
 
 function index(req, res) {
 	Category.find({})
@@ -23,4 +23,22 @@ function create(req, res) {
 		});
 }
 
-export { index, create };
+function show(req, res) {
+	Game.findById(req.params.id)
+		.then(game => res.json(game))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
+}
+
+function deleteGame(req, res) {
+	Game.findByIdAndDelete(req.params.id)
+		.then(game => res.json(game))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		})
+}
+
+export { index, create, show, deleteGame as delete };
