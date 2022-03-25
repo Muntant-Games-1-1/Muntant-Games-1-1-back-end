@@ -22,19 +22,28 @@ function create(req, res) {
 function deleteLobby(req, res) {
 	Lobby.findByIdAndDelete(req.params.id)
 		.then(lobby => res.status(200).json(lobby))
-		.catch(err => res.status(405).json(err))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
 function show(req, res){
 	Lobby.findById(req.params.id)
 	.then(lobby => res.status(200).json(lobby))
-	.catch(err => res.status(500).json(err))
+	.catch(err => {
+		console.error(err);
+		res.status(500).json(err);
+	});
 }
 
 function update(){
 	Lobby.findByIdAndUpdate(req.params.id, req.body, {new: true})
 	.then(lobby => res.status(200).json(lobby))
-	.catch(err => res.status(500).json(err))
+	.catch(err => {
+		console.error(err);
+		res.status(500).json(err);
+	});
 }
 
 export {
