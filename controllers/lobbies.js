@@ -10,8 +10,8 @@ function index(req, res) {
 }
 
 function create(req, res) {
-	const owner = req.user.profile._id;
-	Lobby.create( {...req.body, owner} )
+	req.body.owner = req.user.profile;
+	Lobby.create(req.body)
 		.then(lobby => res.status(201).json(lobby))
 		.catch(err => {
 			console.error(err);
