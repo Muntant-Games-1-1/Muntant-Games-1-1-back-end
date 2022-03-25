@@ -24,13 +24,20 @@ function create(req, res) {
 }
 
 function deleteMessage(req, res) {
-	Lobby.findByIdAndDelete(req.params.id)
-		.then(lobby => res.status(200).json(lobby))
+	Message.findByIdAndDelete(req.params.id)
+		.then(message => res.status(200).json(message))
 		.catch(err => res.status(405).json(err))
+}
+
+function update(){
+	Massage.findByIdAndUpdate(req.params.id, req.body, {new: true})
+	.then(message => res.status(200).json(message))
+	.catch(err => res.status(500).json(err))
 }
 
 export {
 	 index, 
 	 create,
-	 deleteMessage as delete
+	 deleteMessage as delete,
+	 update,
 	 };
