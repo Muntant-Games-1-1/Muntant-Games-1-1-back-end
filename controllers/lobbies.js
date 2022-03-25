@@ -25,4 +25,13 @@ function deleteLobby(req, res) {
 		.catch(err => res.status(405).json(err))
 }
 
-export { index, create, deleteLobby as delete };
+function show(req, res){
+	
+}
+
+export {
+	 index, 
+	 create, 
+	 deleteLobby as delete,
+	 show,
+	};
