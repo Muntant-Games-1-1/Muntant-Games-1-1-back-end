@@ -1,7 +1,9 @@
 import { Game } from "../models/game.js";
+import { Category } from "../models/category.js"
 
 function index(req, res) {
 	Game.find({})
+		.populate("categories")
 		.then(games => res.json(games))
 		.catch(err => {
 			console.log(err);
