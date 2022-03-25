@@ -23,4 +23,14 @@ function create(req, res) {
 		});
 }
 
-export { index, create };
+function deleteMessage(req, res) {
+	Lobby.findByIdAndDelete(req.params.id)
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => res.status(405).json(err))
+}
+
+export {
+	 index, 
+	 create,
+	 deleteMessage as delete
+	 };

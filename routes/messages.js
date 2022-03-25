@@ -12,5 +12,5 @@ router.use(decodeUserFromToken);
 
 router.get("/", checkAuth, messagesCtrl.index);
 router.post("/", checkAuth, messagesCtrl.create);
-router.delete("/", checkAuth, messagesCtrl.delete)
+router.delete("/:id", checkAuth, messagesCtrl.delete)
 export { router };
