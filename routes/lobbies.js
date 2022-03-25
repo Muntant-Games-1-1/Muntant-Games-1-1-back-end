@@ -6,11 +6,11 @@ const router = Router();
 
 
 /*---------- Public Routes ----------*/
+router.get("/", lobbiesCtrl.index);
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken);
 
-router.get("/", checkAuth, lobbiesCtrl.index);
 router.post("/", checkAuth, lobbiesCtrl.create);
 router.delete("/", checkAuth, lobbiesCtrl.delete);
 
