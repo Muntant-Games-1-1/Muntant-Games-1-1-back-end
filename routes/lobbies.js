@@ -13,5 +13,6 @@ router.use(decodeUserFromToken);
 
 router.post("/", checkAuth, lobbiesCtrl.create);
 router.delete("/", checkAuth, lobbiesCtrl.delete);
+router.show("/:id", checkAuth, lobbiesCtrl.show)
 
 export { router };
