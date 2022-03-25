@@ -25,4 +25,22 @@ function deleteLobby(req, res) {
 		.catch(err => res.status(405).json(err))
 }
 
-export { index, create, deleteLobby as delete };
+function show(req, res){
+	Lobby.findById(req.params.id)
+	.then(lobby => res.status(200).json(lobby))
+	.catch(err => res.status(500).json(err))
+}
+
+function update(){
+	Lobby.findByIdAndUpdate(req.params.id, req.body, {new: true})
+	.then(lobby => res.status(200).json(lobby))
+	.catch(err => res.status(500).json(err))
+}
+
+export {
+	 index, 
+	 create, 
+	 deleteLobby as delete,
+	 show,
+	 update,
+	};
