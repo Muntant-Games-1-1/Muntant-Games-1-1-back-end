@@ -19,7 +19,7 @@ function create(req, res) {
 		.then(game => {
 			Category.find({ _id: game.categories }).then(categories => {
 				categories.forEach(category => {
-					category.games.push(game._id)
+					category.games.push(game)
 					category.save()
 				});
 			});
@@ -46,11 +46,11 @@ function deleteGame(req, res) {
 		.then(game => {
 			Category.find({ _id: game.categories }).then(categories => {
 				categories.forEach(category => {
-					category.games.slice(game._id, 1);
+					category.games.remove(game);
 					category.save();
 				});
 			});
-			res.status(201).json(game);
+			res.status(200).json(game);
 		})
 		.catch(err => {
 			console.error(err);
