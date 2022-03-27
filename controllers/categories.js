@@ -2,6 +2,7 @@ import { Category } from "../models/category.js";
 
 function index(req, res) {
 	Category.find({})
+		.populate("games")
 		.then(categories => res.json(categories))
 		.catch(err => {
 			console.err(err);

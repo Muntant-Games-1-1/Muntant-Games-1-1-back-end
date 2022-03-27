@@ -21,7 +21,6 @@ function create(req, res) {
 				categories.forEach(category => {
 					category.games.push(game._id)
 					category.save()
-					
 				});
 			});
 			res.status(201).json(game);
