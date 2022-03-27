@@ -4,13 +4,13 @@ import { decodeUserFromToken, checkAuth } from "../middleware/auth.js";
 
 const router = Router();
 
-
 /*---------- Public Routes ----------*/
+router.get("/", categoriesCtrl.index);
+router.get("/:id", categoriesCtrl.show)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken);
 
-router.get("/", checkAuth, categoriesCtrl.index);
-router.post("/", checkAuth, categoriesCtrl.create)
+router.post("/", checkAuth, categoriesCtrl.create);
 
 export { router };
