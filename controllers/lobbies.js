@@ -54,11 +54,12 @@ function join(req, res) {
 			lobby.waitingPlayers.includes(req.user.profile)
 				? lobby.waitingPlayers.splice(req.user.profile, 1)
 				: lobby.waitingPlayers.push(req.user.profile);
-			lobby.save()
-				.then(lobby => res.status(200).json(lobby))
+			lobby.save().then(lobby => res.status(200).json(lobby));
 		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
 export { index, create, deleteLobby as delete, show, update, join };
-
-
