@@ -39,7 +39,7 @@ function show(req, res) {
 		});
 }
 
-function update() {
+function update(req, res) {
 	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
 		.populate(["owner", "game", "waitingPlayers", "messages"])
 		.then(lobby => res.status(200).json(lobby))
