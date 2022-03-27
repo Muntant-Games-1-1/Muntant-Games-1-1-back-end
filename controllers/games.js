@@ -25,6 +25,7 @@ function create(req, res) {
 
 function show(req, res) {
 	Game.findById(req.params.id)
+		.populate("categories")
 		.then(game => res.json(game))
 		.catch(err => {
 			console.error(err);
@@ -38,7 +39,7 @@ function deleteGame(req, res) {
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
-		})
+		});
 }
 
 export { index, create, show, deleteGame as delete };
