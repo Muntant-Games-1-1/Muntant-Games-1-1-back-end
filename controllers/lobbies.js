@@ -31,7 +31,6 @@ function deleteLobby(req, res) {
 
 function show(req, res) {
 	Lobby.findById(req.params.id)
-		.populate(["owner", "game", "waitingPlayers", "messages"])
 		.then(lobby => res.status(200).json(lobby))
 		.catch(err => {
 			console.error(err);
@@ -41,6 +40,9 @@ function show(req, res) {
 
 function update() {
 	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
+
+		.populate(["owner", "game", "waitingPlayers", "messages"])
+
 		.then(lobby => res.status(200).json(lobby))
 		.catch(err => {
 			console.error(err);
@@ -48,4 +50,28 @@ function update() {
 		});
 }
 
+
+function join(req, res) {
+	Lobby.findByIdAndUpdate(req.params.id, null, { new: true })
+		.then(lobby => {
+			lobby.waitingPlayers.includes(req.user.profile)
+				? lobby.waitingPlayers.splice(req.user.profile, 1)
+				: lobby.waitingPlayers.push(req.user.profile);
+			lobby.save()
+				.then(lobby => res.status(200).json(lobby))
+		})
+
+function update() {
+	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
+		.then(lobby => res.status(200).json(lobby))
+
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
+}
+
+export { index, create, deleteLobby as delete, show, update, join };
+
 export { index, create, deleteLobby as delete, show, update };
+
