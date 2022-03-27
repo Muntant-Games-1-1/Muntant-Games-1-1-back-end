@@ -50,9 +50,10 @@ function join(req, res) {
 	Lobby.findByIdAndUpdate(req.params.id, null, { new: true })
 		.then(lobby => {
 			lobby.waitingPlayers.includes(req.user.profile)
-				? lobby.waitingPlayers.slice(req.user.profile, 1)
+				? lobby.waitingPlayers.splice(req.user.profile, 1)
 				: lobby.waitingPlayers.push(req.user.profile);
-			res.status(200).json(lobby)
+			lobby.save()
+				.then(lobby => res.status(200).json(lobby))
 		})
 		.catch(err => {
 			console.error(err);
