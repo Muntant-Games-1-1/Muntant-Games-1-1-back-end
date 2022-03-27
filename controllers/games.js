@@ -43,7 +43,15 @@ function show(req, res) {
 
 function deleteGame(req, res) {
 	Game.findByIdAndDelete(req.params.id)
-		.then(game => res.json(game))
+		.then(game => {
+			Category.find({ _id: game.categories }).then(categories => {
+				categories.forEach(category => {
+					category.games.slice(game._id, 1);
+					category.save();
+				});
+			});
+			res.status(201).json(game);
+		})
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
