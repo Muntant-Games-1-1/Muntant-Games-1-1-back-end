@@ -28,28 +28,36 @@ function deleteLobby(req, res) {
 		});
 }
 
-function show(req, res){
+function show(req, res) {
 	Lobby.findById(req.params.id)
-	.then(lobby => res.status(200).json(lobby))
-	.catch(err => {
-		console.error(err);
-		res.status(500).json(err);
-	});
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
-function update(){
-	Lobby.findByIdAndUpdate(req.params.id, req.body, {new: true})
-	.then(lobby => res.status(200).json(lobby))
-	.catch(err => {
-		console.error(err);
-		res.status(500).json(err);
-	});
+function update() {
+	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
-export {
-	 index, 
-	 create, 
-	 deleteLobby as delete,
-	 show,
-	 update,
-	};
+function join(req, res) {
+	Lobby.findByIdAndUpdate(req.params.id, null, { new: true })
+		.then(lobby => {
+			lobby.waitingPlayers.includes(req.user.profile)
+				? lobby.waitingPlayers.slice(req.user.profile, 1)
+				: lobby.waitingPlayers.push(req.user.profile);
+			res.status(200).json(lobby)
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
+}
+
+export { index, create, deleteLobby as delete, show, update, join };
