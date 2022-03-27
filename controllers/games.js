@@ -18,6 +18,7 @@ function create(req, res) {
 	Game.create(req.body)
 		.then(game => {
 			Category.find({ game: game.categories }).then(categories => {
+				console.log(categories)
 				categories.forEach(category => {
 					category.games.push(game);
 				});
