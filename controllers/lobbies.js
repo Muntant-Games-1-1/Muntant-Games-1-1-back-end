@@ -2,6 +2,7 @@ import { Lobby } from "../models/lobby.js";
 
 function index(req, res) {
 	Lobby.find({})
+		.populate(["owner", "game", "waitingPlayers", "messages"])
 		.then(lobbies => res.json(lobbies))
 		.catch(err => {
 			console.log(err);
@@ -28,28 +29,23 @@ function deleteLobby(req, res) {
 		});
 }
 
-function show(req, res){
+function show(req, res) {
 	Lobby.findById(req.params.id)
-	.then(lobby => res.status(200).json(lobby))
-	.catch(err => {
-		console.error(err);
-		res.status(500).json(err);
-	});
+		.populate(["owner", "game", "waitingPlayers", "messages"])
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
-function update(){
-	Lobby.findByIdAndUpdate(req.params.id, req.body, {new: true})
-	.then(lobby => res.status(200).json(lobby))
-	.catch(err => {
-		console.error(err);
-		res.status(500).json(err);
-	});
+function update() {
+	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
+		.then(lobby => res.status(200).json(lobby))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
-export {
-	 index, 
-	 create, 
-	 deleteLobby as delete,
-	 show,
-	 update,
-	};
+export { index, create, deleteLobby as delete, show, update };
