@@ -17,10 +17,11 @@ function index(req, res) {
 function create(req, res) {
 	Game.create(req.body)
 		.then(game => {
-			Category.find({ game: game.categories }).then(categories => {
-				console.log(categories)
+			Category.find({ _id: game.categories }).then(categories => {
 				categories.forEach(category => {
-					category.games.push(game);
+					category.games.push(game._id)
+					category.save()
+					
 				});
 			});
 			res.status(201).json(game);

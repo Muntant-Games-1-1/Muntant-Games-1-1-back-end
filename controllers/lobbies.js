@@ -31,6 +31,7 @@ function deleteLobby(req, res) {
 
 function show(req, res) {
 	Lobby.findById(req.params.id)
+		.populate("waitingPlayers")
 		.then(lobby => res.status(200).json(lobby))
 		.catch(err => {
 			console.error(err);
