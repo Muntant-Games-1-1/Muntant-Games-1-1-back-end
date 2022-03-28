@@ -13,10 +13,18 @@ function index(req, res) {
 }
 
 function create(req, res) {
-	// req.body.owner = req.user.profile
-	// let lobby = req.location.
+	req.body.owner = req.user.profile;
 	Message.create(req.body)
-		.then(message => res.json(message))
+		.then(message =>
+			Lobby.findById(message.lobby._id)
+				.then(lobby => {
+					lobby.messages.push(message)
+					lobby.save()
+						.then(lobby => {
+						res.status(200).json(message)
+					})
+				})
+		)
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
