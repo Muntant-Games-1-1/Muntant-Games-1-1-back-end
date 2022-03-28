@@ -14,7 +14,15 @@ function create(req, res) {
 	req.body.owner = req.user.profile;
 	req.body.waitingPlayers = req.user.profile;
 	Lobby.create(req.body)
-		.then(lobby => res.status(201).json(lobby))
+		.then(lobby => {
+			Lobby.findById({ _id: lobby._id })
+			.populate(["owner", "game", "waitingPlayers", "messages"])
+			.then(lobbies => res.json(lobbies))
+			.catch(err => {
+				console.error(err);
+				res.status(500).json(err);
+			});
+		})
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
