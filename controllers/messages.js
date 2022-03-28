@@ -5,6 +5,7 @@ function index(req, res) {
 	// lobby = req.location or something
 	// Message.find({ lobby: req.location })
 	Message.find({})
+		.populate("owner")
 		.then(messages => res.json(messages))
 		.catch(err => {
 			console.err(err);
@@ -16,15 +17,20 @@ function create(req, res) {
 	req.body.owner = req.user.profile;
 	Message.create(req.body)
 		.then(message =>
-			Lobby.findById(message.lobby._id)
-				.then(lobby => {
-					lobby.messages.push(message)
-					lobby.save()
-						.then(lobby => {
-						res.status(200).json(message)
+			message.populate("owner"))
+		.then(message => {
+				console.log(message)
+				Lobby.findById(message.lobby._id)
+					.then(lobby => {
+						console.log(lobby)
+						lobby?.messages.push(message)
+						lobby.save()
+							.then(lobby => {
+								console.log(message)
+								res.status(200).json(message)
+							})
+						})
 					})
-				})
-		)
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
