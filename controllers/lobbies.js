@@ -12,6 +12,7 @@ function index(req, res) {
 
 function create(req, res) {
 	req.body.owner = req.user.profile;
+	req.body.waitingPlayers = req.user.profile;
 	Lobby.create(req.body)
 		.then(lobby => res.status(201).json(lobby))
 		.catch(err => {
