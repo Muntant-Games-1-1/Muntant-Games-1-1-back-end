@@ -6,7 +6,7 @@ const router = Router();
 
 
 /*---------- Public Routes ----------*/
-router.get("/", messagesCtrl.index);
+router.get("/:id", messagesCtrl.index);
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken);

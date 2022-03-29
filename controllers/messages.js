@@ -2,7 +2,7 @@ import { Message } from "../models/message.js";
 import { Lobby } from "../models/lobby.js";
 
 function index(req, res) {
-	Message.find({})
+	Message.find({ lobby: req.params.id})
 		.populate("owner")
 		.then(messages => res.json(messages))
 		.catch(err => {
@@ -19,7 +19,6 @@ function create(req, res) {
 			Lobby.findById(message.lobby._id).then(lobby => {
 				lobby.messages.push(message);
 				lobby.save().then(lobby => {
-					console.log(message);
 					res.status(200).json(message);
 				});
 			});
