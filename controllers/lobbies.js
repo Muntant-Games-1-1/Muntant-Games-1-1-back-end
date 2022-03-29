@@ -1,4 +1,5 @@
 import { Lobby } from "../models/lobby.js";
+import { Message } from "../models/message.js"
 
 function index(req, res) {
 	Lobby.find({})
@@ -31,7 +32,10 @@ function create(req, res) {
 
 function deleteLobby(req, res) {
 	Lobby.findByIdAndDelete(req.params.id)
-		.then(lobby => res.status(200).json(lobby))
+		.then(lobby => {
+			Message.deleteMany({ lobby: lobby._id })
+				.then(() => res.status(200).json(lobby))
+		})
 		.catch(err => {
 			console.error(err);
 			res.status(500).json(err);
