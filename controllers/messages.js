@@ -30,8 +30,17 @@ function create(req, res) {
 }
 
 function deleteMessage(req, res) {
-	Message.findByIdAndDelete(req.params.id)
-		.then(message => res.status(200).json(message))
+	Message.findByIdAndDelete(req.params.messageId)
+		.then(message => {
+			Lobby.findById(req.params.lobbyId)
+			.then(lobby => {
+					console.log(lobby)
+					lobby.messages.remove(message);
+					lobby.save().then(() => {
+						res.status(200).json(message)
+					})
+			})
+		})
 		.catch(err => {
 			console.error(err);
 			res.status(405).json(err);
