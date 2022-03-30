@@ -34,7 +34,6 @@ function deleteMessage(req, res) {
 		.then(message => {
 			Lobby.findById(req.params.lobbyId)
 			.then(lobby => {
-					console.log(lobby)
 					lobby.messages.remove(message);
 					lobby.save().then(() => {
 						res.status(200).json(message)
