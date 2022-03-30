@@ -43,13 +43,18 @@ function deleteLobby(req, res) {
 }
 
 function show(req, res) {
-	Lobby.findById(req.params.id)
-		.populate("waitingPlayers")
-		.then(lobby => res.status(200).json(lobby))
-		.catch(err => {
-			console.error(err);
-			res.status(500).json(err);
-		});
+	setTimeout(() => {
+		Lobby.findById(req.params.id)
+			.populate(["owner", "game", "waitingPlayers", "messages"])
+			.then(lobby => {
+				console.log('show', lobby);
+				res.status(200).json(lobby)
+			})
+			.catch(err => {
+				console.error(err);
+				res.status(500).json(err);
+			});
+	}, 200)
 }
 
 function update(req, res) {
@@ -63,12 +68,16 @@ function update(req, res) {
 }
 
 function join(req, res) {
+	console.log('join function ran')
+	console.log(req.params.id)
 	Lobby.findByIdAndUpdate(req.params.id, null, { new: true })
 		.then(lobby => {
 			lobby.waitingPlayers.includes(req.user.profile)
-				? lobby.waitingPlayers.splice(req.user.profile, 1)
+				? lobby.waitingPlayers.remove(req.user.profile)
 				: lobby.waitingPlayers.push(req.user.profile);
-			lobby.save().then(lobby => res.status(200).json(lobby));
+			lobby.save().then(lobby => {
+				res.status(200).json(lobby)
+			});
 		})
 		.catch(err => {
 			console.error(err);
