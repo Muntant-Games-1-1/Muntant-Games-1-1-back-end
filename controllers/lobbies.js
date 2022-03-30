@@ -2,13 +2,13 @@ import { Lobby } from "../models/lobby.js";
 import { Message } from "../models/message.js"
 
 function index(req, res) {
-	Lobby.find({})
-		.populate(["owner", "game", "waitingPlayers", "messages"])
-		.then(lobbies => res.json(lobbies))
-		.catch(err => {
-			console.log(err);
-			res.status(500).json(err);
-		});
+		Lobby.find({})
+			.populate(["owner", "game", "waitingPlayers", "messages"])
+			.then(lobbies => res.json(lobbies))
+			.catch(err => {
+				console.log(err);
+				res.status(500).json(err);
+			});
 }
 
 function create(req, res) {
