@@ -17,29 +17,29 @@ Here are links to the [deployed applcation](https://www.example.com) and a [Trel
 
 To run the project locally:
 
-1. Clone and initiate the [back-end repository](example.com) (following the step-by-step setup guide in the README)
-
-2. Navigate to the directory you want to clone this app into and run the command 
+1. Navigate to the directory you want to clone this app into and run the command 
 
  `git clone git@github.com:Team-Mutant/Mutant-games-back-end.git`
 
-3. After cloning the directory, run the command 
+2. After cloning the directory, run the command 
 
 `touch .env`
 
-4. Add the following line of code to the .env file you just created.
+3. Add the following lines of code to the .env file you just created, filling in the `<bracketed-placeholders>` with your own info.
 
-`DATABASE_URL=mongodb+srv://zena:coding123@cluster0.53jre.mongodb.net/matant-games?retryWrites=true&w=majority`
+`DATABASE_URL=mongodb+srv://<your-username>:<your-password>@cluster0.53jre.mongodb.net/<datbase-name>?retryWrites=true&w=majority`
 
-`SECRET=<create-your-secret-key-here>`
+`SECRET=<create-a-secret-key>`
 
-5. Install all dependencies by running the command 
+4. Install all dependencies by running the command 
 
 `npm i`
 
-6. Spin up the app by running the command 
+5. Spin up the app by running the command 
 
 `npm start`
+
+6. Clone and initiate the [front-end repository](https://github.com/Team-Mutant/Mutant-games-front-end) (following the step-by-step setup guide in the README)
 
 <br>
 
@@ -54,6 +54,6 @@ This full-stack MERN application was built using:
  3. React
  4. Node.js
  5. Mongoose
- 6. Heroku
+ 6. CI/CD with Heroku
 
 ## Next Steps:
