@@ -47,7 +47,6 @@ function show(req, res) {
 		Lobby.findById(req.params.id)
 			.populate(["owner", "game", "waitingPlayers", "messages"])
 			.then(lobby => {
-				console.log('show', lobby);
 				res.status(200).json(lobby)
 			})
 			.catch(err => {
@@ -58,7 +57,7 @@ function show(req, res) {
 }
 
 function update(req, res) {
-	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true })
+	Lobby.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
 		.populate(["owner", "game", "waitingPlayers", "messages"])
 		.then(lobby => res.status(200).json(lobby))
 		.catch(err => {
@@ -68,8 +67,6 @@ function update(req, res) {
 }
 
 function join(req, res) {
-	console.log('join function ran')
-	console.log(req.params.id)
 	Lobby.findByIdAndUpdate(req.params.id, null, { new: true })
 		.then(lobby => {
 			lobby.waitingPlayers.includes(req.user.profile)
