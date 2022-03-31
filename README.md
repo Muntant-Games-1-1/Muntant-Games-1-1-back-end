@@ -1,71 +1,59 @@
-# Decoupled MERN Stack with JWT Auth Template - Back End
+# Mutant Games
 
-This is the back end of a decoupled MERN Stack app that includes JWT Authentication.
+<img src="./public/Mutant-Games-Logo.jpg" style="max-width: 200px"/>
 
-When combined with the front end found [here](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end), you'll have all you need to build a full stack MERN app!
+From the dev team that brought you *Duck Duck Shoe*.
 
-Use this to go build things! 🚀
+Mutant Games is an open source video game lobby service! Users can create and join lobbies to connect with their friends and chat about their favorite video games.
 
-## To Use This Template
+<br>
 
-**Replace `<name-of-your-app-here>` in the commands below with the name of your app!**
+## Getting Started:
+<hr>
 
-```bash
-git clone https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end <name-of-your-app-here>-back-end
-cd <name-of-your-app-here>-back-end
-```
+Here are links to the [deployed applcation](https://www.example.com) and a [Trello Board](https://trello.com/b/K7ydDNPv/tmnt) containing planning materials.
 
-Once you are in the project directory:
 
-```bash
-rm -rf .git
-```
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
+To run the project locally:
 
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
+1. Clone and initiate the [back-end repository](example.com) (following the step-by-step setup guide in the README)
 
-Re-initialize a git repository:
+2. Navigate to the directory you want to clone this app into and run the command 
 
-```bash
-git init
-```
+ `git clone git@github.com:Team-Mutant/Mutant-games-back-end.git`
 
-Use the GitHub CLI to create a new project repository on GitHub:
+3. After cloning the directory, run the command 
 
-```bash
-gh repo create <name-of-your-app-here>-back-end
-```
+`touch .env`
 
-Run npm i to fetch the template's dependencies:
+4. Add the following line of code to the .env file you just created.
 
-```bash
-npm i
-```
+`DATABASE_URL=mongodb+srv://zena:coding123@cluster0.53jre.mongodb.net/matant-games?retryWrites=true&w=majority`
 
-touch a .env file:
+`SECRET=<create-your-secret-key-here>`
 
-```bash
-touch .env
-```
+5. Install all dependencies by running the command 
 
-Fill it with the following:
+`npm i`
 
-```
-DATABASE_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
+6. Spin up the app by running the command 
 
-Replace the `DATABASE_URL` and `SECRET` with values that you provide.
+`npm start`
 
-> 🚨 Place secrets in this `.env` file. The contents of this file WILL NOT be exposed to site visitors.
+<br>
 
-Delete this README.md, then make an initial commit:
+## Screenshots:
 
-```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
-```
+## Technologies Used:
 
-You're done!
+This full-stack MERN application was built using:
+
+ 1. MongoDB
+ 2. Express
+ 3. React
+ 4. Node.js
+ 5. Mongoose
+ 6. Heroku
+
+## Next Steps:
