@@ -12,7 +12,7 @@ router.get("/:id", messagesCtrl.index);
 router.use(decodeUserFromToken);
 
 router.post("/", checkAuth, messagesCtrl.create);
-router.delete("/:id", checkAuth, messagesCtrl.delete);
+router.delete("/:lobbyId/message/:messageId", checkAuth, messagesCtrl.delete);
 router.put("/:id", checkAuth, messagesCtrl.update)
 
 
