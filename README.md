@@ -1,6 +1,6 @@
 # Mutant Games
 
-<img src="./public/Mutant-Games-Logo.jpg" style="max-width: 200px"/>
+<img src="./public/Mutant-Games-Logo.jpg" style="max-width: 300px"/>
 
 From the dev team that brought you *Duck Duck Shoe*.
 
