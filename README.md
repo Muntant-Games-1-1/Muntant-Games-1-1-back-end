@@ -73,3 +73,13 @@ This full-stack MERN application was built using:
 ![](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=whit)
 ![](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=whit)
 
+## The Team:
+
+Koffi Hessou - Git Manager, Visionary
+
+Sun Huang - SRUM Manager, Organization Lead
+
+Teal Ewer - Database Manager, Documenter
+
+Zena Endrias - Front End Lead, Designer
+
