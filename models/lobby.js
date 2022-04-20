@@ -20,6 +20,7 @@ const lobbySchema = new Schema(
 			enum :[ 'Easy', 'Medium', 'hard', 'competitive' ],
 			default: 'Medium'
 		},
+		
 		console: { 
 			type: String,
 			enum :[ 'Xbox', 'Pc', 'Nintendo', 'Playstation', 'Any' ],
