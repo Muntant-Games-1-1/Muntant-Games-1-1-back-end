@@ -2,13 +2,13 @@ import { Lobby } from "../models/lobby.js";
 import { Message } from "../models/message.js"
 
 function index(req, res) {
-		Lobby.find({})
-			.populate(["owner", "game", "waitingPlayers", "messages"])
-			.then(lobbies => res.json(lobbies))
-			.catch(err => {
-				console.log(err);
-				res.status(500).json(err);
-			});
+	Lobby.find({})
+		.populate(["owner", "game", "waitingPlayers", "messages"])
+		.then(lobbies => res.json(lobbies))
+		.catch(err => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 }
 
 function create(req, res) {
@@ -17,12 +17,12 @@ function create(req, res) {
 	Lobby.create(req.body)
 		.then(lobby => {
 			Lobby.findById({ _id: lobby._id })
-			.populate(["owner", "game", "waitingPlayers", "messages"])
-			.then(lobbies => res.json(lobbies))
-			.catch(err => {
-				console.error(err);
-				res.status(500).json(err);
-			});
+				.populate(["owner", "game", "waitingPlayers", "messages"])
+				.then(lobbies => res.json(lobbies))
+				.catch(err => {
+					console.error(err);
+					res.status(500).json(err);
+				});
 		})
 		.catch(err => {
 			console.error(err);
@@ -43,17 +43,15 @@ function deleteLobby(req, res) {
 }
 
 function show(req, res) {
-	setTimeout(() => {
-		Lobby.findById(req.params.id)
-			.populate(["owner", "game", "waitingPlayers", "messages"])
-			.then(lobby => {
-				res.status(200).json(lobby)
-			})
-			.catch(err => {
-				console.error(err);
-				res.status(500).json(err);
-			});
-	}, 200)
+	Lobby.findById(req.params.id)
+		.populate(["owner", "game", "waitingPlayers", "messages"])
+		.then(lobby => {
+			res.status(200).json(lobby)
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json(err);
+		});
 }
 
 function update(req, res) {
